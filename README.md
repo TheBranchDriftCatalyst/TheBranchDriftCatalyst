@@ -10,3 +10,10 @@ https://github.com/TheBranchDriftCatalyst/3portfolio
 
 My dotfiles
 https://github.com/TheBranchDriftCatalyst/dotfiles
+
+... and coming soon
+
+drogon
+drogon-lab
+
+My personal home lab datawarehouse setup.  Currently not in a state to make public.
