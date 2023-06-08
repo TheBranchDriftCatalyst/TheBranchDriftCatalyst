@@ -2,7 +2,8 @@
 
 My JSON Resume compatible resume generator
 https://github.com/TheBranchDriftCatalyst/jsonresume-theme-catalyst
-![](https://thebranchdriftcatalyst.github.io/jsonresume-theme-catalyst/resume.png)
+<img src="https://thebranchdriftcatalyst.github.io/jsonresume-theme-catalyst/resume.png"  width="50%" height="50%">
+
 
 My 3.js Portfolio Page (WIP)
 https://github.com/TheBranchDriftCatalyst/3portfolio
