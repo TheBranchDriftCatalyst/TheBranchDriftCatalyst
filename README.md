@@ -1,1 +1,1 @@
-![Check me Out here](https://notion.knowledgedump.space/)
+[Check me out here](https://notion.knowledgedump.space/)
