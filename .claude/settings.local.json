@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/panda/catalyst-devspace/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,22 @@
+repositories:
+- name: "dotfiles"
+  local_path: "../../catalyst/dotfiles-2024"
+  redact_private: false
+  groups: [ "catalyst-core", 'development' ]
+- name: "cli-tools"
+  local_path: "../../catalyst/cli-tools"
+  redact_private: false
+  groups: [ "catalyst-core", 'development' ]
+- name: "machines"
+  local_path: "../../catalyst/machines"
+  redact_private: false
+  groups: [ "catalyst-core", 'development' ]
+- name: "secrets"
+  local_path: "../../catalyst/secrets"
+  groups: [ "catalyst-core", 'development' ]
+  redact_private: true
+
+# Maybe just link them here
+# waka_time:
+#   username: "TheBranchDriftCatalyst"
+#   api_key:
