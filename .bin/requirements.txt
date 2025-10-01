@@ -1,0 +1,4 @@
+# DEPRECATED: Use Poetry instead (poetry install)
+# This file is kept for backwards compatibility only
+PyYAML>=6.0
+pydantic>=2.0

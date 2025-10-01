@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "catalyst-profile-generator"
+version = "1.0.0"
+description = "Generate synthwave-style GitHub profile README from workspace repositories"
+authors = ["TheBranchDriftCatalyst <djdanielsh@gmail.com>"]
+readme = "GENERATOR_README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyyaml = "^6.0.3"
+pydantic = "^2.11.9"
+toml = "^0.10.2"
+
+[tool.poetry.group.dev.dependencies]
+
+[tool.poetry.scripts]
+generate = "generate:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

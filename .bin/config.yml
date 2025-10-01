@@ -1,22 +1,27 @@
-repositories:
-- name: "dotfiles"
-  local_path: "../../catalyst/dotfiles-2024"
-  redact_private: false
-  groups: [ "catalyst-core", 'development' ]
-- name: "cli-tools"
-  local_path: "../../catalyst/cli-tools"
-  redact_private: false
-  groups: [ "catalyst-core", 'development' ]
-- name: "machines"
-  local_path: "../../catalyst/machines"
-  redact_private: false
-  groups: [ "catalyst-core", 'development' ]
-- name: "secrets"
-  local_path: "../../catalyst/secrets"
-  groups: [ "catalyst-core", 'development' ]
-  redact_private: true
+# GitHub Profile Generator Configuration
 
-# Maybe just link them here
+# Workspace scan directories
+# The generator will scan these paths for catalyst_repo.yaml files
+scan_paths:
+  - "../.."  # workspace/ directory
+  - "../../../catalyst"  # catalyst/ core directory
+
+# GitHub username for stats/badges
+github_username: "TheBranchDriftCatalyst"
+
+# Optional: WakaTime integration
 # waka_time:
 #   username: "TheBranchDriftCatalyst"
-#   api_key:
+#   api_key: "your-api-key-here"
+
+# Optional: Custom ordering for categories
+# category_order:
+#   - "catalyst-core"
+#   - "web-apps"
+#   - "infrastructure"
+#   - "tools"
+
+# Optional: Hide specific repos from profile
+# hidden_repos:
+#   - "experimental-stuff"
+#   - "private-notes"

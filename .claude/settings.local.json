@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Read(//Users/panda/catalyst-devspace/**)"
+      "Read(//Users/panda/catalyst-devspace/**)",
+      "Bash(git -C /Users/panda/catalyst-devspace/workspace/@catalyst-swiss-army-knife remote -v)",
+      "Bash(poetry add:*)",
+      "Bash(poetry run:*)",
+      "Bash(/usr/bin/env poetry run python generate.py)",
+      "Bash(export SHELL=/bin/bash)",
+      "Bash(/bin/bash -c 'cd /Users/panda/catalyst-devspace/workspace/@TheBranchDriftCatalyst/.bin && poetry run python generate.py')",
+      "Bash(git -C /Users/panda/catalyst-devspace/workspace/@TheBranchDriftCatalyst log --oneline -10)"
     ],
     "deny": [],
     "ask": []

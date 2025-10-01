@@ -1,0 +1,41 @@
+# Catalyst Repository Metadata
+# This file defines metadata for each repository to be used by the profile page generator
+
+# Repository Information
+name: "TheBranchDriftCatalyst"
+description: "GitHub profile page generator with synthwave styling and AI-powered project summaries"
+repo_url: "https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst"
+
+# Visibility
+private: false
+
+# Repository Status (active, archived, wip, experimental)
+status: "active"
+
+# Tech Stack
+tech_stack:
+  languages:
+    - "python"
+    - "markdown"
+  frameworks: []
+  tools:
+    - "pyyaml"
+    - "shields.io"
+
+# Grouping/Categories (for organizing on profile page)
+groups:
+  - "meta"
+  - "generators"
+  - "tools"
+
+# Badge Configuration (optional - will use defaults if not specified)
+badges:
+  stars: true
+  issues: true
+  prs: true
+  license: true
+
+# Custom highlights (optional - used for non-AI manual highlights)
+highlights:
+  - "Synthwave-style GitHub profile generator"
+  - "Automated project documentation"
