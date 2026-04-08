@@ -404,7 +404,7 @@ class ProfileGenerator:
                 f'&sideLabels={self.PURPLE}" alt="Streak" /></td>'
             ),
             (
-                f'<td><img src="https://github-readme-stats.vercel.app'
+                f'<td><img src="https://github-readme-stats-sigma-five.vercel.app'
                 f"/api/top-langs/?username={u}&layout=compact"
                 f"&theme=synthwave&hide_border=true&bg_color={self.BG}"
                 f"&title_color={self.CYAN}&text_color=ffffff"

@@ -23,7 +23,7 @@
 
 <table><tr>
 <td><img src="https://streak-stats.demolab.com?user=TheBranchDriftCatalyst&theme=synthwave&hide_border=true&background=0d1117&ring=00fcd6&fire=ff69b4&currStreakLabel=00fcd6&sideLabels=bd93f9" alt="Streak" /></td>
-<td><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheBranchDriftCatalyst&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&title_color=00fcd6&text_color=ffffff&icon_color=bd93f9" alt="Languages" /></td>
+<td><img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=TheBranchDriftCatalyst&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&title_color=00fcd6&text_color=ffffff&icon_color=bd93f9" alt="Languages" /></td>
 </tr></table>
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=TheBranchDriftCatalyst&theme=react-dark&hide_border=true&bg_color=0d1117&color=00fcd6&line=ff69b4&point=bd93f9&area=true&area_color=ff69b4" width="95%" alt="Activity" />
