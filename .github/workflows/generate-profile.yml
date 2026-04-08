@@ -1,21 +1,18 @@
-name: Generate Profile README
+name: Validate Profile README
 
 on:
   push:
     branches: [main]
     paths:
       - '.bin/**'
-      - '**/catalyst_repo.yaml'
-  schedule:
-    # Weekly Monday 6am UTC
-    - cron: '0 6 * * 1'
-  workflow_dispatch:
-
-permissions:
-  contents: write
+      - 'README.md'
+  pull_request:
+    paths:
+      - '.bin/**'
+      - 'README.md'
 
 jobs:
-  generate:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,20 +28,14 @@ jobs:
         working-directory: .bin
         run: poetry install --no-interaction
 
-      - name: Generate README
+      - name: Validate generator runs without errors
         working-directory: .bin
-        run: poetry run python generate.py
+        run: poetry run python generate.py --dry-run > /dev/null
 
-      - name: Check for changes
-        id: diff
+      - name: Check markdown structure
         run: |
-          git diff --quiet README.md || echo "changed=true" >> "$GITHUB_OUTPUT"
-
-      - name: Commit and push
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "chore: auto-regenerate profile README"
-          git push
+          # Verify README has expected sections
+          grep -q "## Featured Projects" README.md || { echo "Missing Featured Projects section"; exit 1; }
+          grep -q "<details>" README.md || { echo "Missing catalog section"; exit 1; }
+          grep -q "capsule-render" README.md || { echo "Missing header/footer"; exit 1; }
+          echo "README structure validated"
