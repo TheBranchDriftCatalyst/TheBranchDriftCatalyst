@@ -1,7 +1,6 @@
 # GitHub Profile Generator Configuration
 
 # Workspace scan directories
-# The generator will scan these paths for catalyst_repo.yaml files
 scan_paths:
   - "../.."  # workspace/ directory
   - "../../../catalyst"  # catalyst/ core directory
@@ -9,19 +8,23 @@ scan_paths:
 # GitHub username for stats/badges
 github_username: "TheBranchDriftCatalyst"
 
-# Optional: WakaTime integration
-# waka_time:
-#   username: "TheBranchDriftCatalyst"
-#   api_key: "your-api-key-here"
+# Featured repos (shown with full treatment, in this order)
+featured_repos:
+  - catalyst-data
+  - talos-homelab
+  - gateway-arr
+  - catalyst-ui
+  - pr-widget
 
-# Optional: Custom ordering for categories
-# category_order:
-#   - "catalyst-core"
-#   - "web-apps"
-#   - "infrastructure"
-#   - "tools"
+# Typing SVG taglines (cycle through these)
+taglines:
+  - "Infrastructure engineer. Data architect. Design system builder."
+  - "From GPU pipelines to Kubernetes operators"
+  - "Building the tools that build the things"
+
+# Bio (shown below header)
+bio: "Full-stack infrastructure engineer building knowledge graphs, Kubernetes operators, ML pipelines, and the design systems that tie it all together."
 
 # Optional: Hide specific repos from profile
-# hidden_repos:
-#   - "experimental-stuff"
-#   - "private-notes"
+hidden_repos:
+  - "secrets"

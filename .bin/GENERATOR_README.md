@@ -12,6 +12,12 @@ A synthwave-style GitHub profile README generator that scans your workspace repo
 
 ## Setup
 
+## 0. TODO
+
+- [ ] Add WakaTime integration for coding stats
+- [ ] Tweak which github stats are shown
+
+
 ### 1. Install Poetry
 
 ```bash
@@ -55,12 +61,14 @@ description: "Brief description of the project"
 repo_url: "https://github.com/username/repo"
 
 # Visibility
+# TODO: i thought we removed this??
 private: false
 
 # Repository Status (active, archived, wip, experimental)
 status: "active"
 
 # Tech Stack
+# TODO: this probably needs to be updated as well not entirely sure its still used with the pyproject.toml and package.json analysis.  Or if it still is used alongside the other strat note it here
 tech_stack:
   languages:
     - "python"
@@ -119,6 +127,7 @@ The `.bin/config.yml` file supports:
 
 ## Directory Structure
 
+<!-- TODO: this is no longer accurate needs to be updated -->
 ```
 @TheBranchDriftCatalyst/
 ├── .bin/
@@ -160,7 +169,7 @@ The synthwave theme uses:
 - Dark background (#0d1117)
 
 ### GitHub Stats
-
+ -->
 The generator uses [github-readme-stats](https://github.com/anuraghazra/github-readme-stats) for dynamic stats. Customize by modifying the URLs in `generate_markdown()` method.
 
 ## Future Enhancements (v2)

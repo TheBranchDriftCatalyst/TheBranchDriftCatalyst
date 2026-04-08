@@ -1,6 +1,8 @@
 # Catalyst Repository Metadata
 # This file defines metadata for each repository to be used by the profile page generator
 
+version: "0.1.1"
+
 # Repository Information
 name: "TheBranchDriftCatalyst"
 description: "GitHub profile page generator with synthwave styling and AI-powered project summaries"
@@ -17,10 +19,12 @@ tech_stack:
   languages:
     - "python"
     - "markdown"
-  frameworks: []
+  frameworks:
+    - "pydantic"
   tools:
     - "pyyaml"
     - "shields.io"
+    - "poetry"
 
 # Grouping/Categories (for organizing on profile page)
 groups:
@@ -28,14 +32,16 @@ groups:
   - "generators"
   - "tools"
 
-# Badge Configuration (optional - will use defaults if not specified)
+# Badge Configuration
 badges:
   stars: true
   issues: true
   prs: true
   license: true
 
-# Custom highlights (optional - used for non-AI manual highlights)
+# Custom highlights
 highlights:
-  - "Synthwave-style GitHub profile generator"
-  - "Automated project documentation"
+  - "Auto-discovers repositories by scanning workspace directories for catalyst_repo.yaml metadata files"
+  - "Pydantic-validated data models (RepoMetadata, TechStack, Config) ensure schema correctness across all repo configs"
+  - "Scans package.json and pyproject.toml to auto-detect tech stacks and generate shields.io badges from 80+ known technologies"
+  - "Synthwave-themed output with catalyst-ui design system palette, capsule-render wave headers, skillicons.dev aggregation, and typing SVG taglines"
