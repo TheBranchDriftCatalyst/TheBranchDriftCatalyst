@@ -1,0 +1,50 @@
+name: Generate Profile README
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.bin/**'
+      - '**/catalyst_repo.yaml'
+  schedule:
+    # Weekly Monday 6am UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Install dependencies
+        working-directory: .bin
+        run: poetry install --no-interaction
+
+      - name: Generate README
+        working-directory: .bin
+        run: poetry run python generate.py
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet README.md || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "chore: auto-regenerate profile README"
+          git push

@@ -11,6 +11,10 @@
 
 *Full-stack infrastructure engineer building knowledge graphs, Kubernetes operators, ML pipelines, and the design systems that tie it all together.*
 
+**DJ** · Platform Engineer
+
+[LinkedIn](https://linkedin.com/in/yourprofile)
+
 <br/>
 
 <img src="https://skillicons.dev/icons?i=ansible,bash,cloudflare,django,docker,fastapi,go,grafana,js,kubernetes,nextjs,nix,playwright,postgres,prometheus,py,react,redis,swift,tailwind,terraform,ts,vite,webpack&theme=dark&perline=15" alt="Tech Stack" />

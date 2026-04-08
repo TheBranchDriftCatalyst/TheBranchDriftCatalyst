@@ -77,6 +77,9 @@ class Config(BaseModel):
     model_config = ConfigDict(extra="ignore")
     scan_paths: List[str]
     github_username: str = "TheBranchDriftCatalyst"
+    display_name: str = ""
+    role: str = ""
+    contact_links: Dict[str, str] = Field(default_factory=dict)
     waka_time: Optional[Dict[str, str]] = None
     category_order: Optional[List[str]] = None
     hidden_repos: Optional[List[str]] = None
@@ -424,6 +427,23 @@ class ProfileGenerator:
             L.append(f"*{self.config.bio}*")
             L.append("")
 
+        # ── Identity & contact links ─────────────────────────────────────
+        identity_parts = []
+        if self.config.display_name:
+            identity_parts.append(f"**{self.config.display_name}**")
+        if self.config.role:
+            identity_parts.append(self.config.role)
+        if identity_parts:
+            L.append(" · ".join(identity_parts))
+            L.append("")
+
+        if self.config.contact_links:
+            link_parts = []
+            for label, url in self.config.contact_links.items():
+                link_parts.append(f"[{label}]({url})")
+            L.append(" · ".join(link_parts))
+            L.append("")
+
         # ── Aggregate tech strip ─────────────────────────────────────────
         icons = self._skill_icons_url()
         if icons:
@@ -580,6 +600,19 @@ class ProfileGenerator:
 
 
 def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(description="GitHub Profile Generator")
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Print generated markdown to stdout without writing README.md",
+    )
+    parser.add_argument(
+        "--check", action="store_true",
+        help="Exit non-zero if README.md would change (for CI)",
+    )
+    args = parser.parse_args()
+
     script_dir = Path(__file__).parent
     repo_root = script_dir.parent
     config_path = script_dir / "config.yml"
@@ -609,15 +642,32 @@ def main():
         for err in gen._errors:
             print(f"    - {err}", file=sys.stderr)
 
-    gen.save_readme(repo_root / "README.md")
+    output_path = repo_root / "README.md"
+
+    if args.dry_run:
+        print("\n--- DRY RUN ---\n")
+        print(gen.generate_markdown())
+        return
+
+    if args.check:
+        new_content = gen.generate_markdown()
+        if output_path.exists():
+            old_content = output_path.read_text()
+            if old_content == new_content:
+                print("\n  README.md is up to date.")
+                return
+            else:
+                print("\n  README.md would change. Run without --check to update.", file=sys.stderr)
+                sys.exit(1)
+        else:
+            print("\n  README.md does not exist yet.", file=sys.stderr)
+            sys.exit(1)
+
+    gen.save_readme(output_path)
 
     print()
     print("  Done.")
     print()
-
-    # Non-zero exit if there were errors
-    if gen._errors:
-        sys.exit(0)  # warnings only, still succeed
 
 
 if __name__ == "__main__":

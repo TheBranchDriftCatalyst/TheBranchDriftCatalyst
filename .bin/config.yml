@@ -8,6 +8,13 @@ scan_paths:
 # GitHub username for stats/badges
 github_username: "TheBranchDriftCatalyst"
 
+# Identity (shown above fold)
+display_name: "DJ"
+role: "Platform Engineer"
+contact_links:
+  LinkedIn: "https://linkedin.com/in/yourprofile"
+  # Email: "you@example.com"
+
 # Featured repos (shown with full treatment, in this order)
 featured_repos:
   - catalyst-data
