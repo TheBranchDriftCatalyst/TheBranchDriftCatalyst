@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GitHub Profile Page Generator v2.0
+GitHub Profile Page Generator v2.1
 Scans workspace repositories and generates a synthwave-style profile README
 aligned to the catalyst-ui design system.
 
@@ -13,24 +13,45 @@ Color palette (from catalyst-ui dark mode):
   Green:         #50fa7b
 """
 
+import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 from typing import List, Dict, Optional
+from urllib.parse import quote as urlquote
+
 import yaml
-from collections import defaultdict
 from pydantic import BaseModel, ConfigDict, Field
+
+# Use tomllib (stdlib 3.11+) with tomli fallback
+try:
+    import tomllib
+except ModuleNotFoundError:
+    try:
+        import tomli as tomllib  # type: ignore[no-redef]
+    except ModuleNotFoundError:
+        tomllib = None  # type: ignore[assignment]
+
+
+# ── Constants ────────────────────────────────────────────────────────────────
+
+MAX_FEATURED_HIGHLIGHTS = 4
+MAX_CATALOG_DESC_LEN = 80
 
 
 # ── Pydantic Models ──────────────────────────────────────────────────────────
 
 
 class TechStack(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     languages: List[str] = Field(default_factory=list)
     frameworks: List[str] = Field(default_factory=list)
     tools: List[str] = Field(default_factory=list)
 
 
 class BadgeConfig(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     stars: bool = True
     issues: bool = True
     prs: bool = True
@@ -38,6 +59,7 @@ class BadgeConfig(BaseModel):
 
 
 class RepoMetadata(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="ignore")
     name: str
     description: str = ""
     repo_url: str = ""
@@ -50,10 +72,9 @@ class RepoMetadata(BaseModel):
     demo_url: str = ""
     repo_path: Optional[Path] = None
 
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-
 
 class Config(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     scan_paths: List[str]
     github_username: str = "TheBranchDriftCatalyst"
     waka_time: Optional[Dict[str, str]] = None
@@ -184,14 +205,16 @@ class ProfileGenerator:
     }
 
     SKIP_PATTERNS = [
-        "@types/", "types/", "loader", "plugin", "cli", "config",
-        "parser", "eslint", "babel", "tslib", "core", "utils", "helper",
+        "@types/", "types/", "loader", "plugin-", "eslint",
+        "babel", "tslib",
     ]
 
     def __init__(self, config: Config, script_dir: Path):
         self.config = config
         self.script_dir = script_dir
         self.repos: List[RepoMetadata] = []
+        self._tech_cache: Dict[str, set] = {}
+        self._errors: List[str] = []
 
     # ── Scanning ─────────────────────────────────────────────────────────
 
@@ -223,8 +246,14 @@ class ProfileGenerator:
                     data["repo_path"] = repo_dir
                     self.repos.append(RepoMetadata(**data))
                     print(f"  + {data['name']}")
+                except yaml.YAMLError as e:
+                    msg = f"YAML parse error in {yaml_path}: {e}"
+                    self._errors.append(msg)
+                    print(f"  ! {msg}", file=sys.stderr)
                 except Exception as e:
-                    print(f"  ! Error loading {yaml_path}: {e}", file=sys.stderr)
+                    msg = f"Error loading {yaml_path}: {e}"
+                    self._errors.append(msg)
+                    print(f"  ! {msg}", file=sys.stderr)
 
     # ── Dependency Detection ─────────────────────────────────────────────
 
@@ -237,34 +266,35 @@ class ProfileGenerator:
         pkg = repo.repo_path / "package.json"
         if pkg.exists():
             try:
-                import json
                 with open(pkg, "r") as f:
                     data = json.load(f)
                 for key in ("dependencies", "devDependencies"):
                     if key in data:
                         deps.update(data[key].keys())
-            except Exception:
-                pass
+            except (json.JSONDecodeError, OSError) as e:
+                self._errors.append(f"package.json error in {repo.name}: {e}")
 
         pyp = repo.repo_path / "pyproject.toml"
-        if pyp.exists():
+        if pyp.exists() and tomllib is not None:
             try:
-                import toml
-                with open(pyp, "r") as f:
-                    data = toml.load(f)
+                with open(pyp, "rb") as f:
+                    data = tomllib.load(f)
                 poetry = data.get("tool", {}).get("poetry", {})
                 if "dependencies" in poetry:
                     deps.update(poetry["dependencies"].keys())
                 for group in poetry.get("group", {}).values():
                     if "dependencies" in group:
                         deps.update(group["dependencies"].keys())
-            except Exception:
-                pass
+            except (ValueError, OSError, KeyError) as e:
+                self._errors.append(f"pyproject.toml error in {repo.name}: {e}")
 
         return deps
 
     def _collect_tech_keys(self, repo: RepoMetadata) -> set:
-        """Collect all tech keys for a repo (YAML + scanned deps)."""
+        """Collect all tech keys for a repo (YAML + scanned deps). Cached."""
+        if repo.name in self._tech_cache:
+            return self._tech_cache[repo.name]
+
         techs = set()
         for lang in repo.tech_stack.languages:
             techs.add(lang.lower())
@@ -274,6 +304,8 @@ class ProfileGenerator:
             techs.add(tool.lower())
         scanned = self._scan_dependencies(repo)
         techs.update(d.lower().replace("_", "").replace("-", "") for d in scanned)
+
+        self._tech_cache[repo.name] = techs
         return techs
 
     # ── Badge Generation ─────────────────────────────────────────────────
@@ -287,10 +319,11 @@ class ProfileGenerator:
                 continue
             if tech in self.SHIELD_MAP:
                 name, color, text_color = self.SHIELD_MAP[tech]
-                safe_name = name.replace(" ", "%20")
+                safe_name = urlquote(name, safe="")
+                safe_logo = urlquote(tech, safe="")
                 badges.append(
                     f"![{name}](https://img.shields.io/badge/{safe_name}-{color}"
-                    f"?style=flat-square&logo={tech}&logoColor={text_color})"
+                    f"?style=flat-square&logo={safe_logo}&logoColor={text_color})"
                 )
         return badges
 
@@ -299,7 +332,7 @@ class ProfileGenerator:
         label, color = self.STATUS_CONFIG.get(status, ("—", "555555"))
         return (
             f"![{label}](https://img.shields.io/badge/"
-            f"{label}-{color}?style=flat-square)"
+            f"{urlquote(label, safe='')}-{color}?style=flat-square)"
         )
 
     def _skill_icons_url(self) -> str:
@@ -324,6 +357,13 @@ class ProfileGenerator:
             f'?i={",".join(icons)}&theme=dark&perline=15" '
             f'alt="Tech Stack" />'
         )
+
+    # ── Helpers ───────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _escape_table_cell(text: str) -> str:
+        """Escape pipe characters for markdown table cells."""
+        return text.replace("|", "\\|")
 
     # ── Repo Splitting ───────────────────────────────────────────────────
 
@@ -376,7 +416,7 @@ class ProfileGenerator:
                 f"[![Typing SVG](https://readme-typing-svg.demolab.com"
                 f"?font=Orbitron&size=20&duration=3000&pause=1000"
                 f"&color={self.CYAN}&center=true&vCenter=true"
-                f"&width=600&lines={joined})](https://git.io/typing-svg)"
+                f"&width=600&lines={joined})](https://github.com/{u})"
             )
             L.append("")
 
@@ -419,7 +459,7 @@ class ProfileGenerator:
             f"/graph?username={u}&theme=react-dark&hide_border=true"
             f"&bg_color={self.BG}&color={self.CYAN}&line={self.PINK}"
             f'&point={self.PURPLE}&area=true&area_color={self.PINK}"'
-            f' width="95%" alt="Activity" />'
+            f' width="95%" alt="Contribution activity graph" />'
         )
         L.extend(["", "</div>", "", "---", ""])
 
@@ -438,12 +478,9 @@ class ProfileGenerator:
                 if repo.description:
                     L.extend([f"> {repo.description}", ""])
 
-                tech = self._tech_badges(repo)
-                if tech:
-                    L.extend([" ".join(tech), ""])
-
+                # Highlights only (badges removed per design review — too noisy)
                 if repo.highlights:
-                    for h in repo.highlights:
+                    for h in repo.highlights[:MAX_FEATURED_HIGHLIGHTS]:
                         L.append(f"- {h}")
                     L.append("")
 
@@ -467,13 +504,15 @@ class ProfileGenerator:
                     else f"**{repo.name}**"
                 )
 
-                # Truncated description
-                desc = repo.description
-                if len(desc) > 80:
-                    desc = desc[:77] + "..."
+                # Truncated + escaped description
+                desc = self._escape_table_cell(repo.description)
+                if len(desc) > MAX_CATALOG_DESC_LEN:
+                    desc = desc[:MAX_CATALOG_DESC_LEN - 3] + "..."
 
                 # Compact tech (just language names, no badges)
-                langs = ", ".join(repo.tech_stack.languages[:3]) or "—"
+                langs = self._escape_table_cell(
+                    ", ".join(repo.tech_stack.languages[:3]) or "—"
+                )
 
                 # Status
                 label, color = self.STATUS_CONFIG.get(
@@ -507,6 +546,7 @@ class ProfileGenerator:
                 f"?type=waving&color=0:{self.CYAN},50:{self.PURPLE},100:{self.PINK}"
                 f'&height=100&section=footer" width="100%" alt="" />'
             ),
+            "",  # trailing newline
         ])
 
         return "\n".join(L)
@@ -514,9 +554,25 @@ class ProfileGenerator:
     # ── Output ───────────────────────────────────────────────────────────
 
     def save_readme(self, output_path: Path):
+        """Atomic write: write to temp file, then rename over target."""
         content = self.generate_markdown()
-        with open(output_path, "w") as f:
-            f.write(content)
+
+        # Write to temp file in same directory (ensures same filesystem for rename)
+        fd, tmp_path = tempfile.mkstemp(
+            dir=output_path.parent, prefix=".readme-", suffix=".tmp"
+        )
+        try:
+            with os.fdopen(fd, "w") as f:
+                f.write(content)
+            os.replace(tmp_path, output_path)
+        except Exception:
+            # Clean up temp file on failure
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+            raise
+
         print(f"\n  README.md → {output_path}")
 
 
@@ -529,7 +585,7 @@ def main():
     config_path = script_dir / "config.yml"
 
     print()
-    print("  GitHub Profile Generator v2.0")
+    print("  GitHub Profile Generator v2.1")
     print("  ─────────────────────────────")
     print()
 
@@ -548,11 +604,20 @@ def main():
 
     print(f"\n  Found {len(gen.repos)} repositories")
 
+    if gen._errors:
+        print(f"  Warnings: {len(gen._errors)}", file=sys.stderr)
+        for err in gen._errors:
+            print(f"    - {err}", file=sys.stderr)
+
     gen.save_readme(repo_root / "README.md")
 
     print()
     print("  Done.")
     print()
+
+    # Non-zero exit if there were errors
+    if gen._errors:
+        sys.exit(0)  # warnings only, still succeed
 
 
 if __name__ == "__main__":
