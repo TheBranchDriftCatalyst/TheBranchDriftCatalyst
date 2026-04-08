@@ -355,7 +355,7 @@ class ProfileGenerator:
         L.append(
             f'<img src="https://capsule-render.vercel.app/api'
             f"?type=waving&color=0:{self.PINK},50:{self.PURPLE},100:{self.CYAN}"
-            f'&height=120&section=header" width="100%" />'
+            f'&height=120&section=header" width="100%" alt="" />'
         )
         L.append("")
 
@@ -395,20 +395,20 @@ class ProfileGenerator:
         L.append('<div align="center">')
         L.append("")
         L.extend([
-            "<table><tr>",
+            '<table role="presentation"><tr>',
             (
                 f'<td><img src="https://streak-stats.demolab.com'
                 f"?user={u}&theme=synthwave&hide_border=true"
                 f"&background={self.BG}&ring={self.CYAN}"
                 f"&fire={self.PINK}&currStreakLabel={self.CYAN}"
-                f'&sideLabels={self.PURPLE}" alt="Streak" /></td>'
+                f'&sideLabels={self.PURPLE}" alt="GitHub contribution streak stats" /></td>'
             ),
             (
                 f'<td><img src="https://github-readme-stats-sigma-five.vercel.app'
                 f"/api/top-langs/?username={u}&layout=compact"
                 f"&theme=synthwave&hide_border=true&bg_color={self.BG}"
                 f"&title_color={self.CYAN}&text_color=ffffff"
-                f'&icon_color={self.PURPLE}" alt="Languages" /></td>'
+                f'&icon_color={self.PURPLE}" alt="Most used programming languages" /></td>'
             ),
             "</tr></table>",
             "",
@@ -505,7 +505,7 @@ class ProfileGenerator:
             (
                 f'<img src="https://capsule-render.vercel.app/api'
                 f"?type=waving&color=0:{self.CYAN},50:{self.PURPLE},100:{self.PINK}"
-                f'&height=100&section=footer" width="100%" />'
+                f'&height=100&section=footer" width="100%" alt="" />'
             ),
         ])
 

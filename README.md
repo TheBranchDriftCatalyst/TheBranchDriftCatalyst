@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff69b4,50:bd93f9,100:00fcd6&height=120&section=header" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff69b4,50:bd93f9,100:00fcd6&height=120&section=header" width="100%" alt="" />
 
 <div align="center">
 
@@ -21,9 +21,9 @@
 
 <div align="center">
 
-<table><tr>
-<td><img src="https://streak-stats.demolab.com?user=TheBranchDriftCatalyst&theme=synthwave&hide_border=true&background=0d1117&ring=00fcd6&fire=ff69b4&currStreakLabel=00fcd6&sideLabels=bd93f9" alt="Streak" /></td>
-<td><img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=TheBranchDriftCatalyst&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&title_color=00fcd6&text_color=ffffff&icon_color=bd93f9" alt="Languages" /></td>
+<table role="presentation"><tr>
+<td><img src="https://streak-stats.demolab.com?user=TheBranchDriftCatalyst&theme=synthwave&hide_border=true&background=0d1117&ring=00fcd6&fire=ff69b4&currStreakLabel=00fcd6&sideLabels=bd93f9" alt="GitHub contribution streak stats" /></td>
+<td><img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=TheBranchDriftCatalyst&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&title_color=00fcd6&text_color=ffffff&icon_color=bd93f9" alt="Most used programming languages" /></td>
 </tr></table>
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=TheBranchDriftCatalyst&theme=react-dark&hide_border=true&bg_color=0d1117&color=00fcd6&line=ff69b4&point=bd93f9&area=true&area_color=ff69b4" width="95%" alt="Activity" />
@@ -158,4 +158,4 @@
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00fcd6,50:bd93f9,100:ff69b4&height=100&section=footer" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00fcd6,50:bd93f9,100:ff69b4&height=100&section=footer" width="100%" alt="" />
