@@ -108,81 +108,81 @@
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **openscad** | Python build system for parametric OpenSCAD models — define variations in YAM... | `WIP` |
+| **openscad** | Python build system for parametric OpenSCAD models — define variations in YAML, render STLs in parallel via Jinja2-te... | `WIP` |
 
 ### Ai Ml
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteL... | `ACTIVE` |
-| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer... | `ACTIVE` |
+| **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteLLM), multiple chat UIs, web search (Sear... | `ACTIVE` |
+| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer embeddings, rule-based proposition extr... | `ACTIVE` |
 
 ### Browser Extensions
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-swiss-army-knife** | Chrome MV3 extension with a pluggable applet architecture that intercepts net... | `WIP` |
+| **catalyst-swiss-army-knife** | Chrome MV3 extension with a pluggable applet architecture that intercepts network requests and renders site-specific ... | `WIP` |
 
 ### Catalyst Core
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev envi... | `ACTIVE` |
-| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, m... | `ACTIVE` |
-| **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-proc... | `ACTIVE` |
-| **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, mo... | `ACTIVE` |
-| **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provis... | `ACTIVE` |
+| **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev environment images with 8 variants, cross-pl... | `ACTIVE` |
+| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, multiprocess Goodreads scraper, Audible b... | `ACTIVE` |
+| **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-process TUIs, git branch management, Docker/... | `ACTIVE` |
+| **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, modular ZSH config, and domain-scoped Brew... | `ACTIVE` |
+| **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provisioning, SOPS/GPG secrets, dotfiles deplo... | `ACTIVE` |
 
 ### Data Science
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelin... | `ACTIVE` |
+| **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelines, demographics research, and a multi-d... | `ACTIVE` |
 
 ### Devops
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and s... | `ACTIVE` |
+| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and serves a React/D3 frontend with force-dir... | `ACTIVE` |
 
 ### Homelab
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitor... | `ACTIVE` |
+| **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitoring, time-of-use energy cost tracking, a... | `ACTIVE` |
 
 ### Infrastructure
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRout... | `WIP` |
-| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD wi... | `ACTIVE` |
+| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRoute resources and syncs hostnames to Techn... | `WIP` |
+| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD with Kustomize, extending the talos-homela... | `ACTIVE` |
 
 ### Macos Native
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-swift** | Shared SwiftUI component library providing the Catalyst cybersynthpunk dark t... | `ACTIVE` |
+| **catalyst-swift** | Shared SwiftUI component library providing the Catalyst cybersynthpunk dark theme, glass-card effects, neon glow modi... | `ACTIVE` |
 
 ### Meta
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation prot... | `ACTIVE` |
-| **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project s... | `ACTIVE` |
+| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation protocol — 6 specialized expert agents colla... | `ACTIVE` |
+| **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project summaries | `ACTIVE` |
 
 ### Serverless
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with... | `ACTIVE` |
+| **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with clean slug-based URLs, edge-injected da... | `ACTIVE` |
 
 ### Web Apps
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **dungeon-library** | Fantasy fiction reading platform with a dark-dungeon aesthetic — browse, read... | `ACTIVE` |
-| **[hakboard-dashboard](https://github.com/TheBranchDriftCatalyst/hakboard)** | Smart home kiosk dashboard built as a DakBoard replacement, featuring drag-an... | `WIP` |
+| **dungeon-library** | Fantasy fiction reading platform with a dark-dungeon aesthetic — browse, read, review, and track progress across seri... | `ACTIVE` |
+| **[hakboard-dashboard](https://github.com/TheBranchDriftCatalyst/hakboard)** | Smart home kiosk dashboard built as a DakBoard replacement, featuring drag-and-drop widget grid layout, radial weathe... | `WIP` |
 
 </details>
 

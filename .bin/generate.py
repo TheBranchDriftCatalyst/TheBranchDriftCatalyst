@@ -38,7 +38,7 @@ except ModuleNotFoundError:
 # ── Constants ────────────────────────────────────────────────────────────────
 
 MAX_FEATURED_HIGHLIGHTS = 4
-MAX_CATALOG_DESC_LEN = 80
+MAX_CATALOG_DESC_LEN = 120
 
 
 # ── Pydantic Models ──────────────────────────────────────────────────────────
