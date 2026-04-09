@@ -17,6 +17,7 @@ import json
 import os
 import sys
 import tempfile
+from collections import defaultdict
 from pathlib import Path
 from typing import List, Dict, Optional
 from urllib.parse import quote as urlquote
@@ -50,14 +51,6 @@ class TechStack(BaseModel):
     tools: List[str] = Field(default_factory=list)
 
 
-class BadgeConfig(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    stars: bool = True
-    issues: bool = True
-    prs: bool = True
-    license: bool = True
-
-
 class RepoMetadata(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="ignore")
     name: str
@@ -67,9 +60,7 @@ class RepoMetadata(BaseModel):
     status: str = "unknown"
     tech_stack: TechStack = Field(default_factory=TechStack)
     groups: List[str] = Field(default_factory=lambda: ["uncategorized"])
-    badges: BadgeConfig = Field(default_factory=BadgeConfig)
     highlights: List[str] = Field(default_factory=list)
-    demo_url: str = ""
     repo_path: Optional[Path] = None
 
 
@@ -80,8 +71,6 @@ class Config(BaseModel):
     display_name: str = ""
     role: str = ""
     contact_links: Dict[str, str] = Field(default_factory=dict)
-    waka_time: Optional[Dict[str, str]] = None
-    category_order: Optional[List[str]] = None
     hidden_repos: Optional[List[str]] = None
     featured_repos: List[str] = Field(default_factory=list)
     taglines: List[str] = Field(default_factory=list)
@@ -132,80 +121,10 @@ class ProfileGenerator:
         "unknown":      ("—",            "555555"),
     }
 
-    # shields.io badge specs for known tech
-    SHIELD_MAP = {
-        # Languages
-        "python":       ("Python",       "3776AB", "white"),
-        "javascript":   ("JavaScript",   "F7DF1E", "black"),
-        "typescript":   ("TypeScript",   "3178C6", "white"),
-        "go":           ("Go",           "00ADD8", "white"),
-        "rust":         ("Rust",         "000000", "white"),
-        "swift":        ("Swift",        "F05138", "white"),
-        "c":            ("C",            "A8B9CC", "black"),
-        # Frontend
-        "react":        ("React",        "61DAFB", "black"),
-        "vue":          ("Vue.js",       "4FC08D", "white"),
-        "svelte":       ("Svelte",       "FF3E00", "white"),
-        "next":         ("Next.js",      "000000", "white"),
-        "vite":         ("Vite",         "646CFF", "white"),
-        "webpack":      ("Webpack",      "8DD6F9", "black"),
-        "tailwindcss":  ("Tailwind",     "06B6D4", "white"),
-        # Backend
-        "django":       ("Django",       "092E20", "white"),
-        "flask":        ("Flask",        "000000", "white"),
-        "fastapi":      ("FastAPI",      "009688", "white"),
-        "express":      ("Express",      "000000", "white"),
-        "nestjs":       ("NestJS",       "E0234E", "white"),
-        # Data
-        "postgresql":   ("PostgreSQL",   "4169E1", "white"),
-        "mongodb":      ("MongoDB",      "47A248", "white"),
-        "redis":        ("Redis",        "DC382D", "white"),
-        "mysql":        ("MySQL",        "4479A1", "white"),
-        "neo4j":        ("Neo4j",        "008CC1", "white"),
-        "dagster":      ("Dagster",      "654FF0", "white"),
-        "pandas":       ("Pandas",       "150458", "white"),
-        "numpy":        ("NumPy",        "013243", "white"),
-        "spacy":        ("spaCy",        "09A3D5", "white"),
-        "pydantic":     ("Pydantic",     "E92063", "white"),
-        # DevOps
-        "docker":       ("Docker",       "2496ED", "white"),
-        "kubernetes":   ("Kubernetes",   "326CE5", "white"),
-        "ansible":      ("Ansible",      "EE0000", "white"),
-        "terraform":    ("Terraform",    "7B42BC", "white"),
-        "argocd":       ("Argo CD",      "EF7B4D", "white"),
-        "argo":         ("Argo",         "EF7B4D", "white"),
-        "flux":         ("Flux",         "5468FF", "white"),
-        "fluxcd":       ("Flux CD",      "5468FF", "white"),
-        "helm":         ("Helm",         "0F1689", "white"),
-        "kustomize":    ("Kustomize",    "326CE5", "white"),
-        # Networking
-        "cilium":       ("Cilium",       "F8C517", "black"),
-        "traefik":      ("Traefik",      "24A1C1", "white"),
-        "nginx":        ("NGINX",        "009639", "white"),
-        "liqo":         ("Liqo",         "00AEC7", "white"),
-        # Observability
-        "prometheus":   ("Prometheus",   "E6522C", "white"),
-        "grafana":      ("Grafana",      "F46800", "white"),
-        "loki":         ("Loki",         "F46800", "white"),
-        "opensearch":   ("OpenSearch",   "005EB8", "white"),
-        "elasticsearch":("Elasticsearch","005571", "white"),
-        # Cloud
-        "minio":        ("MinIO",        "C72E49", "white"),
-        "cloudflare":   ("Cloudflare",   "F38020", "white"),
-        "aws":          ("AWS",          "232F3E", "white"),
-        "gcp":          ("GCP",          "4285F4", "white"),
-        # Security
-        "vault":        ("Vault",        "FFEC6E", "black"),
-        "authentik":    ("Authentik",    "FD4B2D", "white"),
-        "tailscale":    ("Tailscale",    "000000", "white"),
-        # Testing
-        "jest":         ("Jest",         "C21325", "white"),
-        "pytest":       ("Pytest",       "0A9EDC", "white"),
-        "playwright":   ("Playwright",   "2EAD33", "white"),
-        # Other
-        "poetry":       ("Poetry",       "60A5FA", "white"),
-        "nix":          ("Nix",          "5277C3", "white"),
-    }
+    # shields.io badge specs for known tech — loaded from shields.json at init.
+    # JSON format: { "key": {"name": "...", "color": "hex", "logo_color": "..."} }
+    # To add new badges, edit .bin/shields.json instead of this file.
+    SHIELD_MAP: Dict[str, tuple] = {}
 
     SKIP_PATTERNS = [
         "@types/", "types/", "loader", "plugin-", "eslint",
@@ -218,11 +137,51 @@ class ProfileGenerator:
         self.repos: List[RepoMetadata] = []
         self._tech_cache: Dict[str, set] = {}
         self._errors: List[str] = []
+        self.SHIELD_MAP = self._load_shield_map()
+
+    @staticmethod
+    def _load_shield_map() -> Dict[str, tuple]:
+        """Load shields.io badge specs from shields.json.
+
+        Returns a dict of { tech_key: (display_name, hex_color, logo_color) }.
+        Falls back to an empty dict (with a warning) if the file is missing or invalid.
+        """
+        shields_path = Path(__file__).parent / "shields.json"
+        if not shields_path.exists():
+            print(
+                f"  Warning: {shields_path} not found — no tech badges will render.",
+                file=sys.stderr,
+            )
+            return {}
+        try:
+            with open(shields_path, "r") as f:
+                raw = json.load(f)
+            # Convert JSON objects to tuples for internal use
+            return {
+                key: (entry["name"], entry["color"], entry["logo_color"])
+                for key, entry in raw.items()
+            }
+        except (json.JSONDecodeError, KeyError, TypeError) as e:
+            print(
+                f"  Warning: failed to parse {shields_path}: {e} "
+                f"— no tech badges will render.",
+                file=sys.stderr,
+            )
+            return {}
 
     # ── Scanning ─────────────────────────────────────────────────────────
 
+    def _get_hidden_repos(self) -> set:
+        """Merge hidden repos from config + HIDDEN_REPOS env var."""
+        hidden = set(self.config.hidden_repos or [])
+        env_hidden = os.environ.get("HIDDEN_REPOS", "")
+        if env_hidden:
+            hidden.update(name.strip() for name in env_hidden.split(",") if name.strip())
+        return hidden
+
     def scan_repositories(self):
         """Scan configured paths for catalyst_repo.yaml files."""
+        hidden = self._get_hidden_repos()
         for scan_path in self.config.scan_paths:
             workspace_path = (self.script_dir / scan_path).resolve()
             if not workspace_path.exists():
@@ -241,7 +200,7 @@ class ProfileGenerator:
                         data = yaml.safe_load(f)
                     if not data:
                         continue
-                    if self.config.hidden_repos and data.get("name") in self.config.hidden_repos:
+                    if data.get("name") in hidden:
                         print(f"  - Skipped (hidden): {data.get('name', repo_dir.name)}")
                         continue
                     if "name" not in data:
@@ -403,6 +362,11 @@ class ProfileGenerator:
         L.append("")
 
         # ── ASCII title + typing SVG + bio ───────────────────────────────
+        # NOTE (#21): Fenced code block is kept intentionally. GitHub's CSS
+        # applies background styling to both <pre> tags and fenced code blocks
+        # (.markdown-body pre, .markdown-body code), so switching to <pre>
+        # does not remove the grey background. The fenced block is already
+        # compact (2 lines) and renders reliably across GitHub clients.
         L.append('<div align="center">')
         L.append("")
         L.extend([
@@ -487,7 +451,8 @@ class ProfileGenerator:
         if featured:
             L.extend(["## Featured Projects", ""])
 
-            for repo in featured:
+            for i, repo in enumerate(featured):
+                is_hero = i == 0
                 badge = self._status_badge(repo.status)
                 if repo.repo_url:
                     L.append(f"### [{repo.name}]({repo.repo_url})  {badge}")
@@ -498,51 +463,73 @@ class ProfileGenerator:
                 if repo.description:
                     L.extend([f"> {repo.description}", ""])
 
-                # Highlights only (badges removed per design review — too noisy)
-                if repo.highlights:
-                    for h in repo.highlights[:MAX_FEATURED_HIGHLIGHTS]:
-                        L.append(f"- {h}")
-                    L.append("")
+                # Hero project: uncapped highlights + tech badge row
+                if is_hero:
+                    tech_badges = self._tech_badges(repo)
+                    if tech_badges:
+                        L.append(" ".join(tech_badges))
+                        L.append("")
+                    if repo.highlights:
+                        for h in repo.highlights:
+                            L.append(f"- {h}")
+                        L.append("")
+                else:
+                    if repo.highlights:
+                        for h in repo.highlights[:MAX_FEATURED_HIGHLIGHTS]:
+                            L.append(f"- {h}")
+                        L.append("")
 
                 L.extend(["---", ""])
 
-        # ── Project Catalog (collapsible) ────────────────────────────────
+        # ── Project Catalog (collapsible, grouped by category) ──────────
         if catalog:
             L.extend([
                 "<details>",
                 '<summary><h2>All Projects</h2></summary>',
                 "",
-                "| Project | Description | Stack | Status |",
-                "|:--------|:------------|:------|:------:|",
             ])
 
+            # Group repos by primary group (first item in groups list)
+            groups: Dict[str, List[RepoMetadata]] = defaultdict(list)
             for repo in catalog:
-                # Name (linked if public)
-                name = (
-                    f"**[{repo.name}]({repo.repo_url})**"
-                    if repo.repo_url and not repo.private
-                    else f"**{repo.name}**"
-                )
+                primary_group = repo.groups[0] if repo.groups else "uncategorized"
+                groups[primary_group].append(repo)
 
-                # Truncated + escaped description
-                desc = self._escape_table_cell(repo.description)
-                if len(desc) > MAX_CATALOG_DESC_LEN:
-                    desc = desc[:MAX_CATALOG_DESC_LEN - 3] + "..."
+            # Sort groups alphabetically, projects within each group alphabetically
+            for group_key in sorted(groups.keys()):
+                group_repos = sorted(groups[group_key], key=lambda r: r.name.lower())
+                group_title = group_key.replace("-", " ").replace("_", " ").title()
+                L.extend([
+                    f"### {group_title}",
+                    "",
+                    "| Project | Description | Status |",
+                    "|:--------|:------------|:------:|",
+                ])
 
-                # Compact tech (just language names, no badges)
-                langs = self._escape_table_cell(
-                    ", ".join(repo.tech_stack.languages[:3]) or "—"
-                )
+                for repo in group_repos:
+                    # Name (linked if public)
+                    name = (
+                        f"**[{repo.name}]({repo.repo_url})**"
+                        if repo.repo_url and not repo.private
+                        else f"**{repo.name}**"
+                    )
 
-                # Status
-                label, color = self.STATUS_CONFIG.get(
-                    repo.status, ("—", "555555")
-                )
-                status = f"`{label}`"
+                    # Truncated + escaped description
+                    desc = self._escape_table_cell(repo.description)
+                    if len(desc) > MAX_CATALOG_DESC_LEN:
+                        desc = desc[:MAX_CATALOG_DESC_LEN - 3] + "..."
 
-                L.append(f"| {name} | {desc} | {langs} | {status} |")
+                    # Status
+                    label, color = self.STATUS_CONFIG.get(
+                        repo.status, ("—", "555555")
+                    )
+                    status = f"`{label}`"
 
-            L.extend(["", "</details>", "", "---", ""])
+                    L.append(f"| {name} | {desc} | {status} |")
+
+                L.append("")
+
+            L.extend(["</details>", "", "---", ""])
 
         # ── Footer ───────────────────────────────────────────────────────
         L.extend([

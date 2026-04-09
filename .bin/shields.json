@@ -1,0 +1,72 @@
+{
+  "python":        {"name": "Python",        "color": "3776AB", "logo_color": "white"},
+  "javascript":    {"name": "JavaScript",    "color": "F7DF1E", "logo_color": "black"},
+  "typescript":    {"name": "TypeScript",    "color": "3178C6", "logo_color": "white"},
+  "go":            {"name": "Go",            "color": "00ADD8", "logo_color": "white"},
+  "rust":          {"name": "Rust",          "color": "000000", "logo_color": "white"},
+  "swift":         {"name": "Swift",         "color": "F05138", "logo_color": "white"},
+  "c":             {"name": "C",             "color": "A8B9CC", "logo_color": "black"},
+
+  "react":         {"name": "React",         "color": "61DAFB", "logo_color": "black"},
+  "vue":           {"name": "Vue.js",        "color": "4FC08D", "logo_color": "white"},
+  "svelte":        {"name": "Svelte",        "color": "FF3E00", "logo_color": "white"},
+  "next":          {"name": "Next.js",       "color": "000000", "logo_color": "white"},
+  "vite":          {"name": "Vite",          "color": "646CFF", "logo_color": "white"},
+  "webpack":       {"name": "Webpack",       "color": "8DD6F9", "logo_color": "black"},
+  "tailwindcss":   {"name": "Tailwind",      "color": "06B6D4", "logo_color": "white"},
+
+  "django":        {"name": "Django",        "color": "092E20", "logo_color": "white"},
+  "flask":         {"name": "Flask",         "color": "000000", "logo_color": "white"},
+  "fastapi":       {"name": "FastAPI",       "color": "009688", "logo_color": "white"},
+  "express":       {"name": "Express",       "color": "000000", "logo_color": "white"},
+  "nestjs":        {"name": "NestJS",        "color": "E0234E", "logo_color": "white"},
+
+  "postgresql":    {"name": "PostgreSQL",    "color": "4169E1", "logo_color": "white"},
+  "mongodb":       {"name": "MongoDB",       "color": "47A248", "logo_color": "white"},
+  "redis":         {"name": "Redis",         "color": "DC382D", "logo_color": "white"},
+  "mysql":         {"name": "MySQL",         "color": "4479A1", "logo_color": "white"},
+  "neo4j":         {"name": "Neo4j",         "color": "008CC1", "logo_color": "white"},
+  "dagster":       {"name": "Dagster",       "color": "654FF0", "logo_color": "white"},
+  "pandas":        {"name": "Pandas",        "color": "150458", "logo_color": "white"},
+  "numpy":         {"name": "NumPy",         "color": "013243", "logo_color": "white"},
+  "spacy":         {"name": "spaCy",         "color": "09A3D5", "logo_color": "white"},
+  "pydantic":      {"name": "Pydantic",      "color": "E92063", "logo_color": "white"},
+
+  "docker":        {"name": "Docker",        "color": "2496ED", "logo_color": "white"},
+  "kubernetes":    {"name": "Kubernetes",    "color": "326CE5", "logo_color": "white"},
+  "ansible":       {"name": "Ansible",       "color": "EE0000", "logo_color": "white"},
+  "terraform":     {"name": "Terraform",     "color": "7B42BC", "logo_color": "white"},
+  "argocd":        {"name": "Argo CD",       "color": "EF7B4D", "logo_color": "white"},
+  "argo":          {"name": "Argo",          "color": "EF7B4D", "logo_color": "white"},
+  "flux":          {"name": "Flux",          "color": "5468FF", "logo_color": "white"},
+  "fluxcd":        {"name": "Flux CD",       "color": "5468FF", "logo_color": "white"},
+  "helm":          {"name": "Helm",          "color": "0F1689", "logo_color": "white"},
+  "kustomize":     {"name": "Kustomize",     "color": "326CE5", "logo_color": "white"},
+
+  "cilium":        {"name": "Cilium",        "color": "F8C517", "logo_color": "black"},
+  "traefik":       {"name": "Traefik",       "color": "24A1C1", "logo_color": "white"},
+  "nginx":         {"name": "NGINX",         "color": "009639", "logo_color": "white"},
+  "liqo":          {"name": "Liqo",          "color": "00AEC7", "logo_color": "white"},
+
+  "prometheus":    {"name": "Prometheus",    "color": "E6522C", "logo_color": "white"},
+  "grafana":       {"name": "Grafana",       "color": "F46800", "logo_color": "white"},
+  "loki":          {"name": "Loki",          "color": "F46800", "logo_color": "white"},
+  "opensearch":    {"name": "OpenSearch",    "color": "005EB8", "logo_color": "white"},
+  "elasticsearch": {"name": "Elasticsearch", "color": "005571", "logo_color": "white"},
+
+  "minio":         {"name": "MinIO",         "color": "C72E49", "logo_color": "white"},
+  "cloudflare":    {"name": "Cloudflare",    "color": "F38020", "logo_color": "white"},
+  "aws":           {"name": "AWS",           "color": "232F3E", "logo_color": "white"},
+  "gcp":           {"name": "GCP",           "color": "4285F4", "logo_color": "white"},
+
+  "vault":         {"name": "Vault",         "color": "FFEC6E", "logo_color": "black"},
+  "authentik":     {"name": "Authentik",     "color": "FD4B2D", "logo_color": "white"},
+  "tailscale":     {"name": "Tailscale",     "color": "000000", "logo_color": "white"},
+
+  "jest":          {"name": "Jest",          "color": "C21325", "logo_color": "white"},
+  "pytest":        {"name": "Pytest",        "color": "0A9EDC", "logo_color": "white"},
+  "playwright":    {"name": "Playwright",    "color": "2EAD33", "logo_color": "white"},
+
+  "poetry":        {"name": "Poetry",        "color": "60A5FA", "logo_color": "white"},
+  "nix":           {"name": "Nix",           "color": "5277C3", "logo_color": "white"}
+}

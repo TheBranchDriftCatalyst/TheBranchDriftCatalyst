@@ -29,9 +29,9 @@ taglines:
   - "From GPU pipelines to Kubernetes operators"
   - "Building the tools that build the things"
 
-# Bio (shown below header)
-bio: "Full-stack infrastructure engineer building knowledge graphs, Kubernetes operators, ML pipelines, and the design systems that tie it all together."
+# Bio (shown below header — thesis, not a list)
+bio: "I build the infrastructure layer between raw data and useful knowledge — from bare-metal Kubernetes clusters to the ML pipelines and UI systems that make data accessible."
 
-# Optional: Hide specific repos from profile
-hidden_repos:
-  - "secrets"
+# Hidden repos — set via HIDDEN_REPOS env var (comma-separated) or list here
+# Example: HIDDEN_REPOS=secrets,private-stuff
+hidden_repos: []

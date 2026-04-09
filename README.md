@@ -9,7 +9,7 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Orbitron&size=20&duration=3000&pause=1000&color=00fcd6&center=true&vCenter=true&width=600&lines=Infrastructure+engineer.+Data+architect.+Design+system+builder.;From+GPU+pipelines+to+Kubernetes+operators;Building+the+tools+that+build+the+things)](https://github.com/TheBranchDriftCatalyst)
 
-*Full-stack infrastructure engineer building knowledge graphs, Kubernetes operators, ML pipelines, and the design systems that tie it all together.*
+*I build the infrastructure layer between raw data and useful knowledge — from bare-metal Kubernetes clusters to the ML pipelines and UI systems that make data accessible.*
 
 **DJ** · Platform Engineer
 
@@ -42,10 +42,18 @@
 
 > 38-asset knowledge graph construction platform with MCP-contracted LLM extraction, dual-write KG (PostgreSQL+pgvector + Neo4j), GPU-accelerated transcription, and cross-source entity resolution running on a 5-node Talos cluster
 
+![Argo CD](https://img.shields.io/badge/Argo%20CD-EF7B4D?style=flat-square&logo=argocd&logoColor=white) ![Dagster](https://img.shields.io/badge/Dagster-654FF0?style=flat-square&logo=dagster&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) ![Kustomize](https://img.shields.io/badge/Kustomize-326CE5?style=flat-square&logo=kustomize&logoColor=white) ![MinIO](https://img.shields.io/badge/MinIO-C72E49?style=flat-square&logo=minio&logoColor=white) ![Neo4j](https://img.shields.io/badge/Neo4j-008CC1?style=flat-square&logo=neo4j&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white) ![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+
 - 38 Dagster assets across 4 code locations (12 congress, 10 media, 13 open-leaks, 3 knowledge-graph) with Bronze/Silver/Gold/Platinum medallion architecture
 - 3-package LLM contract validation system with MCP-enforced structured output, 9 ConfigMap-mounted prompt templates, and 198 tests at 97% coverage
 - GPU-accelerated transcription: dual backend (OpenVINO + faster-whisper) with automatic CPU fallback
 - Speaker diarization with pyannote + word-level alignment
+- LLM-based NER and qualified S-P-O assertion extraction with negation/hedge detection
+- Cross-source entity resolution (EDC framework) across 4 domains
+- Dual-write knowledge graph: PostgreSQL+pgvector + Neo4j
+- 22 Prometheus metrics across 8 subsystems with 32 Kubernetes manifests
+- QSV AV1 hardware video transcoding for ultra compression
+- 13-page Streamlit data explorer with asset browser, semantic search, knowledge graph viz
 
 ---
 
@@ -96,28 +104,85 @@
 <details>
 <summary><h2>All Projects</h2></summary>
 
-| Project | Description | Stack | Status |
-|:--------|:------------|:------|:------:|
-| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRout... | go | `WIP` |
-| **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev envi... | nix, shell | `ACTIVE` |
-| **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteL... | python, typescript, yaml | `ACTIVE` |
-| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, m... | python | `ACTIVE` |
-| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation prot... | markdown | `ACTIVE` |
-| **catalyst-swift** | Shared SwiftUI component library providing the Catalyst cybersynthpunk dark t... | swift | `ACTIVE` |
-| **catalyst-swiss-army-knife** | Chrome MV3 extension with a pluggable applet architecture that intercepts net... | typescript, javascript | `WIP` |
-| **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-proc... | go, shell, zsh | `ACTIVE` |
-| **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, mo... | shell, bash, lua | `ACTIVE` |
-| **dungeon-library** | Fantasy fiction reading platform with a dark-dungeon aesthetic — browse, read... | typescript, python | `ACTIVE` |
-| **[hakboard-dashboard](https://github.com/TheBranchDriftCatalyst/hakboard)** | Smart home kiosk dashboard built as a DakBoard replacement, featuring drag-an... | typescript, css | `WIP` |
-| **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitor... | python | `ACTIVE` |
-| **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provis... | yaml, python, jinja2 | `ACTIVE` |
-| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer... | python, typescript | `ACTIVE` |
-| **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelin... | python | `ACTIVE` |
-| **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with... | typescript | `ACTIVE` |
-| **openscad** | Python build system for parametric OpenSCAD models — define variations in YAM... | python, openscad | `WIP` |
-| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and s... | go, typescript | `ACTIVE` |
-| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD wi... | yaml, bash | `ACTIVE` |
-| **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project s... | python, markdown | `ACTIVE` |
+### 3D Design
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **openscad** | Python build system for parametric OpenSCAD models — define variations in YAM... | `WIP` |
+
+### Ai Ml
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteL... | `ACTIVE` |
+| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer... | `ACTIVE` |
+
+### Browser Extensions
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **catalyst-swiss-army-knife** | Chrome MV3 extension with a pluggable applet architecture that intercepts net... | `WIP` |
+
+### Catalyst Core
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev envi... | `ACTIVE` |
+| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, m... | `ACTIVE` |
+| **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-proc... | `ACTIVE` |
+| **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, mo... | `ACTIVE` |
+| **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provis... | `ACTIVE` |
+
+### Data Science
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelin... | `ACTIVE` |
+
+### Devops
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and s... | `ACTIVE` |
+
+### Homelab
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitor... | `ACTIVE` |
+
+### Infrastructure
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRout... | `WIP` |
+| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD wi... | `ACTIVE` |
+
+### Macos Native
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **catalyst-swift** | Shared SwiftUI component library providing the Catalyst cybersynthpunk dark t... | `ACTIVE` |
+
+### Meta
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation prot... | `ACTIVE` |
+| **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project s... | `ACTIVE` |
+
+### Serverless
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with... | `ACTIVE` |
+
+### Web Apps
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **dungeon-library** | Fantasy fiction reading platform with a dark-dungeon aesthetic — browse, read... | `ACTIVE` |
+| **[hakboard-dashboard](https://github.com/TheBranchDriftCatalyst/hakboard)** | Smart home kiosk dashboard built as a DakBoard replacement, featuring drag-an... | `WIP` |
 
 </details>
 
