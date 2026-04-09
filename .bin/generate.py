@@ -514,10 +514,7 @@ class ProfileGenerator:
                         else f"**{repo.name}**"
                     )
 
-                    # Truncated + escaped description
                     desc = self._escape_table_cell(repo.description)
-                    if len(desc) > MAX_CATALOG_DESC_LEN:
-                        desc = desc[:MAX_CATALOG_DESC_LEN - 3] + "..."
 
                     # Status
                     label, color = self.STATUS_CONFIG.get(

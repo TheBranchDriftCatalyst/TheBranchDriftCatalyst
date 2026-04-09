@@ -108,81 +108,81 @@
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **openscad** | Python build system for parametric OpenSCAD models — define variations in YAML, render STLs in parallel via Jinja2-te... | `WIP` |
+| **openscad** | Python build system for parametric OpenSCAD models — define variations in YAML, render STLs in parallel via Jinja2-templated output names and Pydantic-validated parameter schemas | `WIP` |
 
 ### Ai Ml
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteLLM), multiple chat UIs, web search (Sear... | `ACTIVE` |
-| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer embeddings, rule-based proposition extr... | `ACTIVE` |
+| **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteLLM), multiple chat UIs, web search (SearXNG), and a multi-agent orchestration framework (OpenClaw) | `ACTIVE` |
+| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer embeddings, rule-based proposition extraction, and Neo4j knowledge graphs — orchestrated via Dagster | `ACTIVE` |
 
 ### Browser Extensions
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-swiss-army-knife** | Chrome MV3 extension with a pluggable applet architecture that intercepts network requests and renders site-specific ... | `WIP` |
+| **catalyst-swiss-army-knife** | Chrome MV3 extension with a pluggable applet architecture that intercepts network requests and renders site-specific UIs in the popup | `WIP` |
 
 ### Catalyst Core
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev environment images with 8 variants, cross-pl... | `ACTIVE` |
-| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, multiprocess Goodreads scraper, Audible b... | `ACTIVE` |
-| **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-process TUIs, git branch management, Docker/... | `ACTIVE` |
-| **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, modular ZSH config, and domain-scoped Brew... | `ACTIVE` |
-| **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provisioning, SOPS/GPG secrets, dotfiles deplo... | `ACTIVE` |
+| **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev environment images with 8 variants, cross-platform builds, and Tilt orchestration | `ACTIVE` |
+| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, multiprocess Goodreads scraper, Audible bookmark extractor, and shared caching/retry/S3 connectors | `ACTIVE` |
+| **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-process TUIs, git branch management, Docker/Kubernetes shell injection, workspace sync, and system diagnostics | `ACTIVE` |
+| **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, modular ZSH config, and domain-scoped Brewfile packages | `ACTIVE` |
+| **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provisioning, SOPS/GPG secrets, dotfiles deployment, and homelab node configuration | `ACTIVE` |
 
 ### Data Science
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelines, demographics research, and a multi-d... | `ACTIVE` |
+| **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelines, demographics research, and a multi-domain Streamlit dashboard | `ACTIVE` |
 
 ### Devops
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and serves a React/D3 frontend with force-dir... | `ACTIVE` |
+| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and serves a React/D3 frontend with force-directed and Dagre layouts plus server-side Mermaid rendering through Kroki | `ACTIVE` |
 
 ### Homelab
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitoring, time-of-use energy cost tracking, a... | `ACTIVE` |
+| **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitoring, time-of-use energy cost tracking, and pre-built Grafana dashboards | `ACTIVE` |
 
 ### Infrastructure
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRoute resources and syncs hostnames to Techn... | `WIP` |
-| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD with Kustomize, extending the talos-homela... | `ACTIVE` |
+| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRoute resources and syncs hostnames to Technitium DNS Server, with a dev mode for /etc/hosts | `WIP` |
+| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD with Kustomize, extending the talos-homelab arr-stack | `ACTIVE` |
 
 ### Macos Native
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-swift** | Shared SwiftUI component library providing the Catalyst cybersynthpunk dark theme, glass-card effects, neon glow modi... | `ACTIVE` |
+| **catalyst-swift** | Shared SwiftUI component library providing the Catalyst cybersynthpunk dark theme, glass-card effects, neon glow modifiers, changelog parser/viewer, and help-tip system for macOS apps | `ACTIVE` |
 
 ### Meta
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation protocol — 6 specialized expert agents colla... | `ACTIVE` |
+| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation protocol — 6 specialized expert agents collaborate through a 5-phase process to decompose epics into structured task manifests | `ACTIVE` |
 | **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project summaries | `ACTIVE` |
 
 ### Serverless
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with clean slug-based URLs, edge-injected da... | `ACTIVE` |
+| **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with clean slug-based URLs, edge-injected dark mode, Google Fonts, analytics, and SEO meta tags | `ACTIVE` |
 
 ### Web Apps
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **dungeon-library** | Fantasy fiction reading platform with a dark-dungeon aesthetic — browse, read, review, and track progress across seri... | `ACTIVE` |
-| **[hakboard-dashboard](https://github.com/TheBranchDriftCatalyst/hakboard)** | Smart home kiosk dashboard built as a DakBoard replacement, featuring drag-and-drop widget grid layout, radial weathe... | `WIP` |
+| **dungeon-library** | Fantasy fiction reading platform with a dark-dungeon aesthetic — browse, read, review, and track progress across serialized stories, featuring AI-powered content generation via local Ollama LLMs | `ACTIVE` |
+| **[hakboard-dashboard](https://github.com/TheBranchDriftCatalyst/hakboard)** | Smart home kiosk dashboard built as a DakBoard replacement, featuring drag-and-drop widget grid layout, radial weather clock, and Notion integration for productivity widgets | `WIP` |
 
 </details>
 
