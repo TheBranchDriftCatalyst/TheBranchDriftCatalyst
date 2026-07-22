@@ -13,11 +13,11 @@
 
 **DJ** · Platform Engineer
 
-[LinkedIn](https://linkedin.com/in/yourprofile)
+[LinkedIn](https://www.linkedin.com/in/hdaniels90/)
 
 <br/>
 
-<img src="https://skillicons.dev/icons?i=ansible,bash,cloudflare,django,docker,fastapi,go,grafana,js,kubernetes,nextjs,nix,playwright,postgres,prometheus,py,react,redis,swift,tailwind,terraform,ts,vite,webpack&theme=dark&perline=15" alt="Tech Stack" />
+<img src="https://skillicons.dev/icons?i=ansible,bash,cloudflare,docker,fastapi,go,grafana,js,kubernetes,nextjs,nix,playwright,postgres,prometheus,py,react,swift,tailwind,terraform,ts,vite,webpack&theme=dark&perline=15" alt="Tech Stack" />
 
 </div>
 
@@ -38,22 +38,24 @@
 
 ## Featured Projects
 
-### [catalyst-data](https://github.com/TheBranchDriftCatalyst/catalyst-data)  ![ACTIVE](https://img.shields.io/badge/ACTIVE-00fcd6?style=flat-square)
+### [catalyst-operator](https://github.com/TheBranchDriftCatalyst/catalyst-operator)  ![WIP](https://img.shields.io/badge/WIP-f7ca33?style=flat-square)
 
-> 38-asset knowledge graph construction platform with MCP-contracted LLM extraction, dual-write KG (PostgreSQL+pgvector + Neo4j), GPU-accelerated transcription, and cross-source entity resolution running on a 5-node Talos cluster
+> Operator-IDE for the catalyst-llm stack — single Python FastAPI server (folds bd issues + workspace files + per-repo CI/PR rollup + LangGraph agent) and a React SPA built on @catalyst/llm-sdk PageShell. Replaces the Go dashboard + Express beads-server + sdlc-agent split with one process. Renders mac-sdlc-node's inference machine as a /machine route.
 
-![Argo CD](https://img.shields.io/badge/Argo%20CD-EF7B4D?style=flat-square&logo=argocd&logoColor=white) ![Dagster](https://img.shields.io/badge/Dagster-654FF0?style=flat-square&logo=dagster&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) ![Kustomize](https://img.shields.io/badge/Kustomize-326CE5?style=flat-square&logo=kustomize&logoColor=white) ![MinIO](https://img.shields.io/badge/MinIO-C72E49?style=flat-square&logo=minio&logoColor=white) ![Neo4j](https://img.shields.io/badge/Neo4j-008CC1?style=flat-square&logo=neo4j&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white) ![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![beads](https://img.shields.io/badge/beads-8B5CF6?style=flat-square&logo=beads&logoColor=white) ![CodeMirror](https://img.shields.io/badge/CodeMirror-D30707?style=flat-square&logo=codemirror&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![GitHub CLI](https://img.shields.io/badge/GitHub%20CLI-181717?style=flat-square&logo=gh&logoColor=white) ![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langgraph&logoColor=white) ![LiteLLM](https://img.shields.io/badge/LiteLLM-1A1A1A?style=flat-square&logo=litellm&logoColor=white) ![OpenAPI Codegen](https://img.shields.io/badge/OpenAPI%20Codegen-6BA539?style=flat-square&logo=openapi-typescript-codegen&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=flat-square&logo=react-router&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![uv](https://img.shields.io/badge/uv-DE5FE9?style=flat-square&logo=uv&logoColor=white) ![Uvicorn](https://img.shields.io/badge/Uvicorn-499848?style=flat-square&logo=uvicorn&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white) ![watchfiles](https://img.shields.io/badge/watchfiles-3776AB?style=flat-square&logo=watchfiles&logoColor=white) ![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=flat-square&logo=yarn&logoColor=white)
 
-- 38 Dagster assets across 4 code locations (12 congress, 10 media, 13 open-leaks, 3 knowledge-graph) with Bronze/Silver/Gold/Platinum medallion architecture
-- 3-package LLM contract validation system with MCP-enforced structured output, 9 ConfigMap-mounted prompt templates, and 198 tests at 97% coverage
-- GPU-accelerated transcription: dual backend (OpenVINO + faster-whisper) with automatic CPU fallback
-- Speaker diarization with pyannote + word-level alignment
-- LLM-based NER and qualified S-P-O assertion extraction with negation/hedge detection
-- Cross-source entity resolution (EDC framework) across 4 domains
-- Dual-write knowledge graph: PostgreSQL+pgvector + Neo4j
-- 22 Prometheus metrics across 8 subsystems with 32 Kubernetes manifests
-- QSV AV1 hardware video transcoding for ultra compression
-- 13-page Streamlit data explorer with asset browser, semantic search, knowledge graph viz
+- Single Python FastAPI process replaces three (Go dashboard, Express beads-server, Python sdlc-agent) — agent tools and HTTP routes share services directly with zero HTTP boundary
+- Operator-as-MCP-host: spawns MCP servers as stdio subprocesses, exposes their tools BOTH to the LangGraph agent AND directly to the UI as buttons/forms
+- UI sets LangGraph state config at runtime via @catalyst/llm-sdk/components/engine/AgentConfigForm — no restart to flip model / temperature / tool subset / max iterations
+- Single React SPA replaces beads-ui + workspace-viewer + dashboard chrome; internal routing with lazy chunks per route; PageShell IDE primitive across all surfaces
+- Per-repo dashboard rollup: every catalyst_repo.yaml-discovered project gets BD counts + GitHub Actions status + open PRs + commits, rolled up to one cockpit at /
+- OpenAPI-generated TS client from FastAPI's /openapi.json — single contract source, zero type drift across the wire
+
+---
+
+### [boomtime](git@github.com:TheBranchDriftCatalyst/hakatime.git)  ![ACTIVE](https://img.shields.io/badge/ACTIVE-00fcd6?style=flat-square)
+
+> A time-tracking application for tracking work hours and generating reports.
 
 ---
 
@@ -68,14 +70,14 @@
 
 ---
 
-### [gateway-arr](https://github.com/TheBranchDriftCatalyst/gateway-arr)  ![WIP](https://img.shields.io/badge/WIP-f7ca33?style=flat-square)
+### [catalyst-data](https://github.com/TheBranchDriftCatalyst/catalyst-data)  ![ACTIVE](https://img.shields.io/badge/ACTIVE-00fcd6?style=flat-square)
 
-> Kubernetes operator that watches Widget CRDs across namespaces, reconciles them into Homepage-compatible ConfigMaps, and serves a Gin REST API with WebSocket push for real-time dashboard updates
+> 38-asset knowledge graph construction platform with MCP-contracted LLM extraction, dual-write KG (PostgreSQL+pgvector + Neo4j), GPU-accelerated transcription, and cross-source entity resolution running on a 5-node Talos cluster
 
-- Custom Widget CRD (gateway.catalyst.io/v1alpha1) with kubebuilder markers, status subresource, health tracking, and credential SecretRef injection
-- Reconciler watches Widgets cluster-wide, groups by category labels, and writes a merged services.yaml ConfigMap every 30s
-- Gin REST API on :8082 with gorilla/websocket push — clients get live widget state without polling
-- Credentials stay in-cluster: SecretKeySelector refs resolve into HOMEPAGE_VAR_ env placeholders
+- 38 Dagster assets across 4 code locations (12 congress, 10 media, 13 open-leaks, 3 knowledge-graph) with Bronze/Silver/Gold/Platinum medallion architecture
+- 3-package LLM contract validation system with MCP-enforced structured output, 9 ConfigMap-mounted prompt templates, and 198 tests at 97% coverage
+- GPU-accelerated transcription: dual backend (OpenVINO + faster-whisper) with automatic CPU fallback
+- Speaker diarization with pyannote + word-level alignment
 
 ---
 
@@ -110,12 +112,17 @@
 |:--------|:------------|:------:|
 | **openscad** | Python build system for parametric OpenSCAD models — define variations in YAML, render STLs in parallel via Jinja2-templated output names and Pydantic-validated parameter schemas | `WIP` |
 
+### Ai Apps
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **[image-sorter](https://github.com/TheBranchDriftCatalyst/image-sorter)** | Local-vision image categorizer with LangGraph HITL, Gradio chat UI, and a stdio MCP file-mover | `WIP` |
+
 ### Ai Ml
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
 | **catalyst-llm** | Self-hosted LLM infrastructure stack with unified multi-provider proxy (LiteLLM), multiple chat UIs, web search (SearXNG), and a multi-agent orchestration framework (OpenClaw) | `ACTIVE` |
-| **memeX** | Hybrid discourse extraction pipeline combining spaCy NER, SentenceTransformer embeddings, rule-based proposition extraction, and Neo4j knowledge graphs — orchestrated via Dagster | `ACTIVE` |
 
 ### Browser Extensions
 
@@ -128,7 +135,6 @@
 | Project | Description | Status |
 |:--------|:------------|:------:|
 | **[catalyst-images](https://github.com/TheBranchDriftCatalyst/catalyst-images)** | Nix flake as single source of truth for reproducible, layered Docker dev environment images with 8 variants, cross-platform builds, and Tilt orchestration | `ACTIVE` |
-| **catalyst-py** | Python utilities monorepo with an ActiveRecord-pattern Google Calendar ORM, multiprocess Goodreads scraper, Audible bookmark extractor, and shared caching/retry/S3 connectors | `ACTIVE` |
 | **cli-tools** | Go CLI tools and shell scripts for developer workflow automation — multi-process TUIs, git branch management, Docker/Kubernetes shell injection, workspace sync, and system diagnostics | `ACTIVE` |
 | **[dotfiles-2024](https://github.com/TheBranchDriftCatalyst/dotfiles-2024)** | Dotbot-based dotfiles management system with fzf-driven profile selection, modular ZSH config, and domain-scoped Brewfile packages | `ACTIVE` |
 | **machines** | Ansible infrastructure automation with 12 idempotent roles for machine provisioning, SOPS/GPG secrets, dotfiles deployment, and homelab node configuration | `ACTIVE` |
@@ -139,11 +145,11 @@
 |:--------|:------------|:------:|
 | **[notebooks](https://github.com/TheBranchDriftCatalyst/notebooks)** | 38+ Jupyter notebooks across 9 topic domains with ML backtesting, NLP pipelines, demographics research, and a multi-domain Streamlit dashboard | `ACTIVE` |
 
-### Devops
+### E2E Swarm Target
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **swarm-graph** | Docker topology explorer — Go agent watches the daemon via event stream and serves a React/D3 frontend with force-directed and Dagre layouts plus server-side Mermaid rendering through Kroki | `ACTIVE` |
+| **[hot-ones](https://github.com/TheBranchDriftCatalyst/hot-ones)** | quiz app used as e2e swarm target | `ACTIVE` |
 
 ### Homelab
 
@@ -151,12 +157,11 @@
 |:--------|:------------|:------:|
 | **kasa-exporter** | Prometheus exporter for TP-Link Kasa smart plugs with real-time power monitoring, time-of-use energy cost tracking, and pre-built Grafana dashboards | `ACTIVE` |
 
-### Infrastructure
+### Mac Os
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-dns-sync** | Kubernetes-native DNS controller that watches Ingress and Traefik IngressRoute resources and syncs hostnames to Technitium DNS Server, with a dev mode for /etc/hosts | `WIP` |
-| **talos-private** | Kubernetes GitOps manifests for private media services deployed via ArgoCD with Kustomize, extending the talos-homelab arr-stack | `ACTIVE` |
+| **[mac-sdlc-node](https://github.com/TheBranchDriftCatalyst/mac-sdlc-node)** | Mac inference node — Ollama + vLLM-MLX + Whisper + OpenWebUI + ComfyUI launchd services + LiteLLM/model-pull config generation. Operator surface lives at workspace/catalyst-operator/. | `ACTIVE` |
 
 ### Macos Native
 
@@ -168,14 +173,22 @@
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
-| **catalyst-sdlc-framework** | Multi-agent SDLC framework implementing a Cognitive Council deliberation protocol — 6 specialized expert agents collaborate through a 5-phase process to decompose epics into structured task manifests | `ACTIVE` |
-| **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project summaries | `ACTIVE` |
+| **[catalyst-agentic-sdlc](https://github.com/TheBranchDriftCatalyst/catalyst-agentic-sdlc)** | Private Claude Code plugin marketplace hosting the Catalyst family of multi-agent SDLC and workflow plugins — including a 6-expert Cognitive Council that decomposes epics into structured task manifests via a strict 5-phase deliberation protocol | `ACTIVE` |
+| **[TheBranchDriftCatalyst](https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst)** | GitHub profile page generator with synthwave styling and AI-powered project summaries | `STABLE` |
 
 ### Serverless
 
 | Project | Description | Status |
 |:--------|:------------|:------:|
 | **notion-cloudflare-blog-worker** | Cloudflare Worker that reverse-proxies Notion pages onto a custom domain with clean slug-based URLs, edge-injected dark mode, Google Fonts, analytics, and SEO meta tags | `ACTIVE` |
+
+### Uncategorized
+
+| Project | Description | Status |
+|:--------|:------------|:------:|
+| **[factorio-calculator](git@github.com:TheBranchDriftCatalyst/factorio-calculator.git)** |  | `ACTIVE` |
+| **[git-repo-template](git@github.com:TheBranchDriftCatalyst/git-repo-template.git)** |  | `ACTIVE` |
+| **pentest** |  | `ACTIVE` |
 
 ### Web Apps
 
