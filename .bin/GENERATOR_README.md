@@ -14,8 +14,8 @@ A synthwave-style GitHub profile README generator that scans your workspace repo
 
 ## 0. TODO
 
-- [ ] Add WakaTime integration for coding stats
 - [ ] Tweak which github stats are shown
+- moved to catalyst-operator and needs to be converted to go
 
 
 ### 1. Install Poetry

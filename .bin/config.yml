@@ -2,8 +2,8 @@
 
 # Workspace scan directories
 scan_paths:
-  - "../.."  # workspace/ directory
-  - "../../../catalyst"  # catalyst/ core directory
+- "../.." # workspace/ directory
+- "../../../catalyst" # catalyst/ core directory
 
 # GitHub username for stats/badges
 github_username: "TheBranchDriftCatalyst"
@@ -12,26 +12,27 @@ github_username: "TheBranchDriftCatalyst"
 display_name: "DJ"
 role: "Platform Engineer"
 contact_links:
-  LinkedIn: "https://linkedin.com/in/yourprofile"
+  LinkedIn: "https://www.linkedin.com/in/hdaniels90/"
   # Email: "you@example.com"
 
-# Featured repos (shown with full treatment, in this order)
+  # Featured repos (shown with full treatment, in this order)
 featured_repos:
-  - catalyst-data
-  - talos-homelab
-  - gateway-arr
-  - catalyst-ui
-  - pr-widget
+- catalyst-operator
+- boomtime
+- talos-homelab
+- catalyst-data
+- catalyst-ui
+- pr-widget
 
 # Typing SVG taglines (cycle through these)
 taglines:
-  - "Infrastructure engineer. Data architect. Design system builder."
-  - "From GPU pipelines to Kubernetes operators"
-  - "Building the tools that build the things"
+- "Infrastructure engineer. Data architect. Design system builder."
+- "From GPU pipelines to Kubernetes operators"
+- "Building the tools that build the things"
 
 # Bio (shown below header — thesis, not a list)
 bio: "I build the infrastructure layer between raw data and useful knowledge — from bare-metal Kubernetes clusters to the ML pipelines and UI systems that make data accessible."
 
 # Hidden repos — set via HIDDEN_REPOS env var (comma-separated) or list here
 # Example: HIDDEN_REPOS=secrets,private-stuff
-hidden_repos: []
+hidden_repos: [ talos-private ]
