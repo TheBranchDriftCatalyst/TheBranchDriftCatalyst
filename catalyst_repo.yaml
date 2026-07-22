@@ -12,25 +12,25 @@ repo_url: "https://github.com/TheBranchDriftCatalyst/TheBranchDriftCatalyst"
 private: false
 
 # Repository Status (active, archived, wip, experimental)
-status: "active"
+status: "stable"
 
 # Tech Stack
 tech_stack:
   languages:
-    - "python"
-    - "markdown"
+  - "python"
+  - "markdown"
   frameworks:
-    - "pydantic"
+  - "pydantic"
   tools:
-    - "pyyaml"
-    - "shields.io"
-    - "poetry"
+  - "pyyaml"
+  - "shields.io"
+  - "poetry"
 
 # Grouping/Categories (for organizing on profile page)
 groups:
-  - "meta"
-  - "generators"
-  - "tools"
+- "meta"
+- "generators"
+- "tools"
 
 # Badge Configuration
 badges:
@@ -41,7 +41,7 @@ badges:
 
 # Custom highlights
 highlights:
-  - "Auto-discovers repositories by scanning workspace directories for catalyst_repo.yaml metadata files"
-  - "Pydantic-validated data models (RepoMetadata, TechStack, Config) ensure schema correctness across all repo configs"
-  - "Scans package.json and pyproject.toml to auto-detect tech stacks and generate shields.io badges from 80+ known technologies"
-  - "Synthwave-themed output with catalyst-ui design system palette, capsule-render wave headers, skillicons.dev aggregation, and typing SVG taglines"
+- "Auto-discovers repositories by scanning workspace directories for catalyst_repo.yaml metadata files"
+- "Pydantic-validated data models (RepoMetadata, TechStack, Config) ensure schema correctness across all repo configs"
+- "Scans package.json and pyproject.toml to auto-detect tech stacks and generate shields.io badges from 80+ known technologies"
+- "Synthwave-themed output with catalyst-ui design system palette, capsule-render wave headers, skillicons.dev aggregation, and typing SVG taglines"
